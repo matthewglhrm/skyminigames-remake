@@ -1,0 +1,8 @@
+main: io.github.vooiid.skyminigames.bukkit.BukkitMain
+version: 1.0-SNAPSHOT
+authors: [vooiid, Guilherme Matthew]
+website: [github.com/vooiid]
+depend: [ProtocolLib]
+commands:
+  fly:
+    aliases: [voar, f]
