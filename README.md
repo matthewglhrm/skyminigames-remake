@@ -1,5 +1,8 @@
 # skyminigames-remake
-Kibe remasterizado da rede Skyminigames (2.0 Lugin).
+<p align="left"> 
+Kibe remasterizado da rede Skyminigames (2.0 Lugin). 
+<strong> Inacabado! </strong>
+</p>
 ##
 <p align="left"> 
   Desenvolvido em Java/Maven
