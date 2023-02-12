@@ -6,6 +6,8 @@ Kibe remasterizado da rede Skyminigames (2.0 Lugin).
 
 <p align="left"> 
 Atualizações 12/02/2023: 
+  </p>
+  <p align="left">
 Foram removidos os Drops, damages & fome
  </p>
  <p align="left"> 
