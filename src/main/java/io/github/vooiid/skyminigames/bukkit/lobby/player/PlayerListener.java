@@ -4,6 +4,7 @@ import io.github.vooiid.skyminigames.bukkit.group.Group;
 import io.github.vooiid.skyminigames.bukkit.group.system.Manager;
 import io.github.vooiid.skyminigames.bukkit.item.ItemBuilder;
 import io.github.vooiid.skyminigames.bukkit.item.api.ActionItemStack;
+import io.github.vooiid.skyminigames.bukkit.lobby.menus.ServersInventory;
 import io.github.vooiid.skyminigames.bukkit.packets.system.TablistAPI;
 import io.github.vooiid.skyminigames.bukkit.packets.system.TitleAPI;
 import org.bukkit.GameMode;
@@ -38,6 +39,7 @@ public class PlayerListener implements Listener
                     @Override
                     public boolean onInteract(Player player, Entity entity, Block block, ItemStack item,
                                               ActionItemStack.ActionType action) {
+                        new ServersInventory(player);
                         return false;
                     }
                 });

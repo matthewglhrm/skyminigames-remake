@@ -26,8 +26,8 @@ public class ScoreboardLobby implements Listener
         score.addLine("  §fJogadores: §a" + Bukkit.getOnlinePlayers().size(), 7);
         score.addLine("§2", 6);
         score.addLine("  §fHub: §a#1", 5);
-        score.addLine("  §fCreditos: §a", 4);
-        score.addLine("  §fCash: §a", 3);
+        score.addLine("  §fCreditos: §a0", 4);
+        score.addLine("  §fCash: §a0", 3);
         score.addLine("§1", 2);
         score.addLine("  §eskyminigames.com  ", 1);
 

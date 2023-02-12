@@ -1,41 +1,45 @@
 package io.github.vooiid.skyminigames.bukkit.server.types;
 
+import io.github.vooiid.skyminigames.bukkit.BukkitMain;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public enum ServerType {
 
-    ATLANTIDA("atlantida", "135.148.6.7", ":25642 "),
-    OVERPOWER("overpower", "135.148.6.7", "25631"),
-    BUNGEE("bungeecord", "135.148.6.7", "25645"),
-    LOBBY("lobby", "135.148.6.7", "25640");
+    LOGIN, LOBBY, LOBBY_HG, LOBBY_SKYWARS, LOBBY_BEDWARS,
 
-    public String name;
-    public String ip;
-    public String port;
+    FULLIRON, SIMULATOR, GLADIATOR,
 
-    ServerType(String name, String ip, String port) {
-        this.name = name;
-        this.ip = ip;
-        this.port = port;
+    EVENTO, HUNGERGAMES,
+
+    SW_SOLO, SW_TEAM, SW_SQUAD,
+
+    SK_SOLO, SK_TEAM, SK_SQUAD,
+
+    BW_SOLO, BW_TEAM, BW_SQUAD,
+
+    CLANXCLAN, SCREENSHARE,
+
+    NETWORK, NONE;
+
+    public boolean isLobby() {
+        return this.name().contains("LOBBY");
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getIp() {
-        return ip;
-    }
-
-    public String getPort() {
-        return port;
-    }
-
-    public static ServerType getServer(ServerType server) {
-        for (ServerType serverType : values()) {
-            if (serverType.getName().equalsIgnoreCase(server.getName())) {
-                return server;
-            }
+    public ServerType getServerLobby() {
+        switch (this) {
+            case HUNGERGAMES:
+            case EVENTO:
+                return BukkitMain.LOBBY_HG ? LOBBY_HG : LOBBY;
+            default:
+                return LOBBY;
         }
-        return null;
+    }
+
+    public boolean canSendData() {
+        return true;
     }
 
 }
