@@ -3,7 +3,11 @@
 Kibe remasterizado da rede Skyminigames (2.0 Lugin). 
 <strong> Inacabado! </strong>
 </p>
-##
+
+Atualizações: 
+Foram removidos os Drops, damages & fome
+Adicionado ServersMenu & Bloqueado eventos no mesmo
+
 <p align="left"> 
   Desenvolvido em Java/Maven
   </p>
