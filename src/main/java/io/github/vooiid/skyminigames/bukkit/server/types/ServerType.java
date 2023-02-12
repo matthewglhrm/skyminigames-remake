@@ -8,19 +8,11 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ServerType {
 
-    LOGIN, LOBBY, LOBBY_HG, LOBBY_SKYWARS, LOBBY_BEDWARS,
-
-    FULLIRON, SIMULATOR, GLADIATOR,
-
-    EVENTO, HUNGERGAMES,
-
+    LOGIN, LOBBY,
+    
     SW_SOLO, SW_TEAM, SW_SQUAD,
 
-    SK_SOLO, SK_TEAM, SK_SQUAD,
-
     BW_SOLO, BW_TEAM, BW_SQUAD,
-
-    CLANXCLAN, SCREENSHARE,
 
     NETWORK, NONE;
 
@@ -30,9 +22,8 @@ public enum ServerType {
 
     public ServerType getServerLobby() {
         switch (this) {
-            case HUNGERGAMES:
-            case EVENTO:
-                return BukkitMain.LOBBY_HG ? LOBBY_HG : LOBBY;
+            case SW_SOLO:
+                return LOBBY;
             default:
                 return LOBBY;
         }
