@@ -188,7 +188,7 @@ public class MenuInventory {
             packet.getIntegers().write(0, id);
             packet.getIntegers().write(1, rows * 9);
 
-            BukkitMain.getInstance().getProcotolManager().sendServerPacket(p, packet);
+            BukkitMain.getInstance().getProtocolManager().sendServerPacket(p, packet);
             p.updateInventory();
         } catch (Exception e) {
             e.printStackTrace();

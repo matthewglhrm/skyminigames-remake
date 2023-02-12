@@ -13,14 +13,14 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import sun.audio.AudioPlayer;
+import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 
 public class PlayerListener implements Listener
 {
@@ -170,13 +170,40 @@ public class PlayerListener implements Listener
         Player p = event.getPlayer();
         if (event.getAction().toString().contains("RIGHT")) {
             ItemStack item = event.getItem();
-            if (item != null) {
-                if (item.getType() == Material.INK_SACK) {
-                    ItemMeta itemMeta = item.getItemMeta();
-                    if (itemMeta != null) {
+                    if (item != null) {
+                        if (item.getType() == Material.COMPASS) {
+                            event.setCancelled(true);
+                             new ServersInventory(p);
+                        }
+            }
+        }
+    }
+    @EventHandler
+    public void onItemDrop(PlayerDropItemEvent e) {
+        if (e.getPlayer().getItemInHand() == null) {
+            e.setCancelled(true);
+        } else {
+            e.setCancelled(true);
+        }
+    }
 
-                    }
-                }
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onCreatureSpawn(CreatureSpawnEvent evt) {
+        evt.setCancelled(evt.getSpawnReason() != CreatureSpawnEvent.SpawnReason.CUSTOM);
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onFoodLevelChange(FoodLevelChangeEvent evt) {
+        evt.setCancelled(true);
+    }
+
+    @EventHandler(priority = EventPriority.LOWEST)
+    public void onEntityDamage(EntityDamageEvent evt) {
+        if (evt.getEntity() instanceof Player) {
+            Player player = (Player) evt.getEntity();
+            evt.setCancelled(true);
+            if (evt.getCause() == EntityDamageEvent.DamageCause.VOID) {
+                player.teleport(player.getWorld().getSpawnLocation());
             }
         }
     }
@@ -191,18 +218,19 @@ public class PlayerListener implements Listener
 
         //Async player format chat for permission
         if (p.hasPermission("role.vip")) {
-            event.setFormat(role.getPrefix() + name + "&8: &f" + msg.replace("&", "§"));
+            event.setFormat(role.getPrefix() + name + "§8: §f" + msg.replace("&", "§"));
         } else {
-            event.setFormat("&f" + name + "&8: &7" + msg.replace("&", "§"));
+            event.setFormat("&f" + name + "§8: §7" + msg.replace("&", "§"));
         }
     }
-
+    
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
 
         //On player quit remove role system
         Player p = event.getPlayer();
         Manager.removeRole(p);
+        event.setQuitMessage(null);
     }
 
 }

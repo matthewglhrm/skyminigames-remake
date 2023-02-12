@@ -9,7 +9,7 @@ import lombok.Getter;
 public enum ServerType {
 
     LOGIN, LOBBY,
-    
+
     SW_SOLO, SW_TEAM, SW_SQUAD,
 
     BW_SOLO, BW_TEAM, BW_SQUAD,
